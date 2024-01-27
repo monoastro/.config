@@ -29,7 +29,7 @@ return require('packer').startup(function(use)
 	use {
 		'barrett-ruth/live-server.nvim',
 		build = 'yarn global add live-server',
-		config = true
+		--config = true --this is giving out an error when doing :PackerSync
 	}
 
 --file navigation
@@ -37,8 +37,8 @@ return require('packer').startup(function(use)
 	use 'nvim-tree/nvim-web-devicons'
 	use("theprimeagen/harpoon")  --creates a stack of files and allows switching between them fast  
 	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.1',
-		requires = { 'nvim-lua/plenary.nvim' }
+		'nvim-telescope/telescope.nvim', tag = '0.1.5',
+		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 	use 'christoomey/vim-tmux-navigator'
 
@@ -48,8 +48,15 @@ return require('packer').startup(function(use)
 --LaTeX support for nvim
 	use("lervag/vimtex")
 
+--R support for neovim
+	use("jalvesaq/Nvim-R")
+
+--vimwiki; need I say much
+	use("vimwiki/vimwiki")
+
 --List of things I'm currently not sold on
---[[universal lsp handler
+
+--[[universal lsp handler; eh don't really need it
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v2.x',
