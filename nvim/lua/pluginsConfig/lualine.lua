@@ -1,50 +1,41 @@
 require('lualine').setup {
-	options = {
-		icons_enabled = true,
-	},
-	sections = {
-		lualine_a = { { 'filename', path = 1 } }
-	}
-}
---[[
-require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'auto',
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {
-      statusline = {},
-      winbar = {},
+    theme = {
+      insert = {
+        a = { fg = '#926ee4', bg = 'none' }, --purple
+        b = { fg = '#926ee4', bg = 'none' },
+        c = { fg = '#926ee4', bg = 'none' },
+      },
+      normal = {
+        a = { fg = '#00ff00', bg = 'none' }, --green
+        b = { fg = '#00ff00', bg = 'none' },
+        c = { fg = '#00ff00', bg = 'none' },
+      },
+      visual = {
+        a = { fg = '#0000ff', bg = 'none' }, --blue
+        b = { fg = '#0000ff', bg = 'none' },
+        c = { fg = '#0000ff', bg = 'none' },
+      },
+      command = {
+        a = { fg = '#926ee4', bg = 'none' }, 
+        b = { fg = '#926ee4', bg = 'none' },
+        c = { fg = '#926ee4', bg = 'none' },
+      },
+      replace = {
+        a = { fg = '#ff0000', bg = 'none' },
+        b = { fg = '#ff0000', bg = 'none' },
+        c = { fg = '#ff0000', bg = 'none' },
+      },
+      inactive = {
+        a = { fg = '#808080', bg = 'none' },
+        b = { fg = '#808080', bg = 'none' },
+        c = { fg = '#808080', bg = 'none' },
+      },
     },
-    ignore_focus = {},
-    always_divide_middle = true,
-    globalstatus = false,
-    refresh = {
-      statusline = 1000,
-      tabline = 1000,
-      winbar = 1000,
-    }
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
-  },
-  inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
-    lualine_y = {},
-    lualine_z = {}
-  },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = {}
+    lualine_a = { { 'filename', path = 1 } }
+  }
 }
---]]
+

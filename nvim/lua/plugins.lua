@@ -16,16 +16,18 @@ return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 	use { 'neoclide/coc.nvim', branch = 'release' }
 	use 'voldikss/vim-floaterm'
+
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 	use 'nvim-treesitter/playground'
 	use 'nvim-lualine/lualine.nvim'
-
 --a must have for using multi-dimensional arrays
-	use({
+	use {
 		'Wansmer/treesj',
 		requires = { 'nvim-treesitter' },
-	})
+	}
 
+
+--live server support for web development
 	use {
 		'barrett-ruth/live-server.nvim',
 		build = 'yarn global add live-server',
@@ -36,11 +38,11 @@ return require('packer').startup(function(use)
 	use 'nvim-tree/nvim-tree.lua'
 	use 'nvim-tree/nvim-web-devicons'
 	use("theprimeagen/harpoon")  --creates a stack of files and allows switching between them fast  
-	use {
+	use
+	{
 		'nvim-telescope/telescope.nvim', tag = '0.1.5',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
-	use 'christoomey/vim-tmux-navigator'
 
 --creates a git like control of undo stack with mulitple branches
 	use("mbbill/undotree")
@@ -54,10 +56,32 @@ return require('packer').startup(function(use)
 --vimwiki; need I say much
 	use("vimwiki/vimwiki")
 
+--rust; need I say much
+	use("rust-lang/rust.vim")
+
+	use 'christoomey/vim-tmux-navigator'
+
+--allows manipulation of stuff in git
+	use("tpope/vim-fugitive")
+
+	use("rktjmp/lush.nvim")
+
+	use("dstein64/vim-startuptime")
+
+	use
+	{
+		"MeanderingProgrammer/markdown.nvim",
+		requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+	}
+
+--let the moon fly
+	use 'bluz71/vim-moonfly-colors'
+
 --List of things I'm currently not sold on
 
 --[[universal lsp handler; eh don't really need it
 	use {
+
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v2.x',
 		requires = {
@@ -81,10 +105,13 @@ return require('packer').startup(function(use)
 	}
 --]]
 
---allows manipulation of stuff in git
-	--use("tpope/vim-fugitive")
 
+
+--connect discord to nvim
+--[[	use("andweeb/presence.nvim")
 	if packer_bootstrap then
 		require('packer').sync()
 	end
+--]]
+	
 end)
