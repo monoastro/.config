@@ -1,117 +1,130 @@
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
   end
-  return false
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
-
-return require('packer').startup(function(use)
---essentials
-	use 'wbthomason/packer.nvim'
-	use { 'neoclide/coc.nvim', branch = 'release' }
-	use 'voldikss/vim-floaterm'
-
-	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-	use 'nvim-treesitter/playground'
-	use 'nvim-lualine/lualine.nvim'
---a must have for using multi-dimensional arrays
-	use {
-		'Wansmer/treesj',
-		requires = { 'nvim-treesitter' },
-	}
-
-
---live server support for web development
-	use {
-		'barrett-ruth/live-server.nvim',
-		build = 'yarn global add live-server',
-		--config = true --this is giving out an error when doing :PackerSync
-	}
-
---file navigation
-	use 'nvim-tree/nvim-tree.lua'
-	use 'nvim-tree/nvim-web-devicons'
-	use("theprimeagen/harpoon")  --creates a stack of files and allows switching between them fast  
-	use
+local plugins = 
+{
+	--essentials
+	{ 
+		"neoclide/coc.nvim",
+		branch = "release",
+	},
+	"voldikss/vim-floaterm",
 	{
-		'nvim-telescope/telescope.nvim', tag = '0.1.5',
-		requires = { {'nvim-lua/plenary.nvim'} }
-	}
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate"
+	},
+	"nvim-treesitter/playground",
+	"nvim-lualine/lualine.nvim",
 
---creates a git like control of undo stack with mulitple branches
-	use("mbbill/undotree")
+	--a must have for using multi-dimensional arrays
+	{
+		"Wansmer/treesj",
+		requires = { "nvim-treesitter" },
+	},
 
---LaTeX support for nvim
-	use("lervag/vimtex")
+	--live server support for web development
+	{
+		"barrett-ruth/live-server.nvim",
+		build = "yarn global add live-server",
+		--config = true --this is giving out an error when doing :PackerSync
+	},
 
---R support for neovim
-	use("jalvesaq/Nvim-R")
+	--file navigation
+	"nvim-tree/nvim-tree.lua",
+	"nvim-tree/nvim-web-devicons",
+	"theprimeagen/harpoon",  --creates a stack of files and allows switching between them fast  
+	
+	{
+		"nvim-telescope/telescope.nvim", tag = "0.1.5",
+		requires = { {"nvim-lua/plenary.nvim"} },
+	},
 
---vimwiki; need I say much
-	use("vimwiki/vimwiki")
+	--creates a git like control of undo stack with mulitple branches
+	"mbbill/undotree",
 
---rust; need I say much
-	use("rust-lang/rust.vim")
+	--LaTeX support for nvim
+	"lervag/vimtex",
 
-	use 'christoomey/vim-tmux-navigator'
+	--R support for neovim
+	"jalvesaq/Nvim-R",
 
---allows manipulation of stuff in git
-	use("tpope/vim-fugitive")
+	--vimwiki; need I say much
+	"vimwiki/vimwiki",
 
-	use("rktjmp/lush.nvim")
+	--rust; need I say much
+	"rust-lang/rust.vim",
 
-	use("dstein64/vim-startuptime")
+	"christoomey/vim-tmux-navigator",
 
-	use
+	--allows manipulation of stuff in git
+	"tpope/vim-fugitive",
+
+	"rktjmp/lush.nvim",
+
+	"dstein64/vim-startuptime",
+
+	
 	{
 		"MeanderingProgrammer/markdown.nvim",
-		requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-	}
+		requires = { "nvim-tree/nvim-web-devicons", opt = true },
+	},
 
---let the moon fly
-	use 'bluz71/vim-moonfly-colors'
+	--let the moon fly
+	"bluz71/vim-moonfly-colors",
+	"github/copilot.vim",
 
---List of things I'm currently not sold on
+	--List of things I'm currently not sold on
 
---[[universal lsp handler; eh don't really need it
-	use {
+	--[[universal lsp handler; eh don't really need it
+	{
 
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v2.x',
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v2.x",
 		requires = {
 			-- LSP Support
-			{ 'neovim/nvim-lspconfig' },
-			{ 'williamboman/mason-lspconfig.nvim' },
-			{ 'williamboman/mason.nvim' },
+			{ "neovim/nvim-lspconfig" },
+			{ "williamboman/mason-lspconfig.nvim" },
+			{ "williamboman/mason.nvim" },
 
 			-- Autocompletion
-			--{ 'hrsh7th/nvim-cmp' },
-			--{ 'hrsh7th/cmp-nvim-lsp' },
-			--{ 'hrsh7th/cmp-buffer' },
-			--{ 'hrsh7th/cmp-path' },
-			--{ 'saadparwaiz1/cmp_luasnip' },
-			--{ 'hrsh7th/cmp-nvim-lua' },
+			--{ "hrsh7th/nvim-cmp" },
+			--{ "hrsh7th/cmp-nvim-lsp" },
+			--{ "hrsh7th/cmp-buffer" },
+			--{ "hrsh7th/cmp-path" },
+			--{ "saadparwaiz1/cmp_luasnip" },
+			--{ "hrsh7th/cmp-nvim-lua" },
 
 			-- Snippets
-			--{ 'L3MON4D3/LuaSnip' },
-			--{ 'rafamadriz/friendly-snippets' },
-		}
+			--{ "L3MON4D3/LuaSnip" },
+			--{ "rafamadriz/friendly-snippets" },
+		},
 	}
---]]
+	--]]
 
+	--connect discord to nvim
+	--[[	"andweeb/presence.nvim",
+	--]]
+}
 
+local opts = {}
 
---connect discord to nvim
---[[	use("andweeb/presence.nvim")
-	if packer_bootstrap then
-		require('packer').sync()
-	end
---]]
-	
-end)
+-- Setup lazy.nvim
+require("lazy").setup({
+	spec = plugins,
+	install = { colorscheme = { "habamax" } },
+  	checker = { enabled = true },
+})
