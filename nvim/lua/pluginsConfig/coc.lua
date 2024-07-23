@@ -8,8 +8,6 @@ vim.opt.updatetime = 150
 
 -- Always show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appeared/became resolved
---vim.opt.signcolumn = "yes"
-
 local keyset = vim.keymap.set
 -- Autocomplete
 function _G.check_back_space()

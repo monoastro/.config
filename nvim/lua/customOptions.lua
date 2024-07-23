@@ -2,6 +2,11 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+--remove the grey column bastard 
+--vim.opt.signcolumn = no
+
+--this is starting to grow on me
+vim.opt.signcolumn = 'number'
 
 vim.opt.wrap = true
 
@@ -13,11 +18,6 @@ vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 vim.opt.undofile = true
 
---remove the grey column bastard 
---vim.opt.signcolumn = no
---or replace it with the non existent number column so that even if some plugin likes to torture me by
---enabling the signcolumn it'll just be replaced by the non-existent number line
-vim.opt.signcolumn = 'number'
 
 --set the width made by tab to be 4 spaces worth and change the indentation amount to be the same 
 vim.opt.tabstop=4

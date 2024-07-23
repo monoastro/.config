@@ -27,7 +27,7 @@ keymap('n', '<c-h>', ':wincmd h<CR>')
 keymap('n', '<c-l>', ':wincmd l<CR>')
 
 --remove the highlight of search easily
-keymap('n', '<leader>h', ':nohlsearch<CR>')
+keymap('n', '<leader>hl', ':nohlsearch<CR>')
 
 --compilation and running of c/c++ 
 keymap('n', '<leader><leader>m', ':!make -B -j -pipe <cr>', opts)
