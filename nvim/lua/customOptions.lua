@@ -1,14 +1,7 @@
 --numbering the lines, don't really prefer it but hey it makes it easier to jump to a line of code
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.cmd([[colorscheme moonfly]])
---vim.opt.termguicolors = true
 
---set background to transparent so it takes on the terminal's transparent background
-vim.cmd [[ highlight Normal guibg=NONE ctermbg=NONE ]]
-vim.cmd [[ highlight LineNr guibg=NONE ctermbg=NONE ]]
---set the color of visual mode to be purple
-vim.cmd [[ highlight Visual guibg=#5d4d7a guifg=NONE ctermbg=NONE ctermfg=NONE ]]
 
 vim.opt.wrap = true
 

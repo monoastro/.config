@@ -1,8 +1,5 @@
-local tsj = require('treesj')
-
 --local langs = {--[[ configuration for languages ]]}
-
-tsj.setup({
+require('treesj').setup({
 	-- Use default keymaps
 	-- (<space>m - toggle, <space>j - join, <space>s - split)
 	use_default_keymaps = true,

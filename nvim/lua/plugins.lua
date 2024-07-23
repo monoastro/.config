@@ -78,11 +78,13 @@ local plugins =
 	"dstein64/vim-startuptime",
 
 	
+	--[[
 	{
 		"MeanderingProgrammer/markdown.nvim",
 		requires = { "nvim-tree/nvim-web-devicons", opt = true },
 	},
 
+	--]]
 	--let the moon fly
 	"bluz71/vim-moonfly-colors",
 	"github/copilot.vim",

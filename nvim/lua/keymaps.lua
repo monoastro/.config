@@ -49,11 +49,13 @@ keymap('v', '<leader>y'  , '"+y<cr>')
 keymap('n', '<leader>y'  , '"+y<cr>')
 keymap('n', '<leader>Y'  , '"+yg_<cr>')
 
---[[Paste --eh I can just use <c-s-v>
+--[[
+--Paste --eh I can just use <c-s-v>
 keymap('n', '<leader>p' , '"+p<cr>')
 keymap('n', '<leader>P' , '"+P<cr>')
 keymap('v', '<leader>p' , '"+p<cr>')
-keymap('v', '<leader>P' , '"+P<cr>')--]]
+keymap('v', '<leader>P' , '"+P<cr>')
+--]]
 
 --instead of the above, I can use the greatest remap ever
 keymap('x', '<leader>p', [["_dP]])
@@ -77,6 +79,10 @@ keymap('n', 'N', 'Nzzzv')
 
 --replace all instances of the word the cursor is on
 keymap('n', 'R', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+--replace { with <cr>{
+keymap('n', '<leader>xp', [[:%s/\(\s*{\)/\r{/g<CR> :nohlsearch<CR>]])
+
 
 --splitting the windows
 keymap('n', '<leader>wv', ':vsplit<cr> :wincmd l<CR>')
