@@ -87,3 +87,4 @@ keymap('n', '<leader>xp', [[:%s/\(\s*{\)/\r{/g<CR> :nohlsearch<CR>]])
 --splitting the windows
 keymap('n', '<leader>wv', ':vsplit<cr> :wincmd l<CR>')
 keymap('n', '<leader>wh', ':split<cr> :wincmd j<CR>')
+

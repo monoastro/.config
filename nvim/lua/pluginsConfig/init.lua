@@ -10,8 +10,10 @@ require("pluginsConfig.undotree")
 require("pluginsConfig.liveServer")
 require("pluginsConfig.vimtex")
 require("pluginsConfig.vimwiki")
---require("pluginsConfig.markdown") --too many problems with this for now
+--require("pluginsConfig.markdown") -- conflicts with vimwiki
+require("pluginsConfig.lazy")
 
+--require("pluginsConfig.presence")
 --require("pluginsConfig.")
 
 
@@ -20,5 +22,4 @@ require("pluginsConfig.vimwiki")
 
 
 
---require("pluginsConfig.presence")
 

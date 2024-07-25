@@ -1,0 +1,71 @@
+[colors.bright]
+black = "0x7e7e7e"
+blue = "0x00cbfe"
+cyan = "0x87d3f8"
+green = "0x00ff00"
+magenta = "0x9300ff"
+red = "0xDC143C"
+white = "0xffffff"
+yellow = "0xffff00"
+
+[colors.footer_bar]
+background = "0xc5c8c6"
+foreground = "0x1d1f21"
+
+[colors.normal]
+black = "0x000000"
+blue = "0x0000ff"
+cyan = "0x00ffff"
+green = "0x00ff00"
+magenta = "0x926ee4"
+red = "0xff0000"
+white = "0xeaeaea"
+yellow = "0xff9a00"
+
+[colors.primary]
+background = "0x000000"
+bright_foreground = "#00ff00"
+foreground = "0x00ff00"
+
+[font]
+size = 15
+
+[font.bold]
+family = "Hack"
+style = "Bold"
+
+[font.bold_italic]
+family = "Hack"
+style = "BoldItalic"
+
+[font.italic]
+family = "Hack"
+style = "Italic"
+
+[font.normal]
+family = "Hack"
+style = "Regular"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[window]
+decorations = "none"
+dynamic_title = false
+opacity = 0.7
+startup_mode = "windowed"
+
+[window.padding]
+x = 0
+y = 0
+
+[window.position]
+x = 0
+y = 0
+
+[keyboard]
+bindings = [
+  { key = "Escape", mods = "Control", action = "ToggleViMode"   },
+  { key = "I", mode = "Vi|~Search", action = "ToggleViMode"   },
+]

@@ -1,4 +1,5 @@
 --vim.opt.termguicolors = false --I will miss this option
+
 vim.cmd([[colorscheme moonfly]])
 
 

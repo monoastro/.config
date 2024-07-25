@@ -31,3 +31,5 @@ vim.opt.incsearch = true
 
 --fast update time
 vim.opt.updatetime = 50
+
+

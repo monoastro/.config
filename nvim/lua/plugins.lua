@@ -17,6 +17,8 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = 
 {
+	{ "folke/lazy.nvim", tag = "stable" },
+
 	--essentials
 	{ 
 		"neoclide/coc.nvim",
@@ -29,67 +31,83 @@ local plugins =
 	},
 	"nvim-treesitter/playground",
 	"nvim-lualine/lualine.nvim",
-
-	--a must have for using multi-dimensional arrays
-	{
-		"Wansmer/treesj",
-		requires = { "nvim-treesitter" },
-	},
-
 	--live server support for web development
 	{
 		"barrett-ruth/live-server.nvim",
 		build = "yarn global add live-server",
-		--config = true --this is giving out an error when doing :PackerSync
+		--config = true
 	},
-
 	--file navigation
 	"nvim-tree/nvim-tree.lua",
 	"nvim-tree/nvim-web-devicons",
 	"theprimeagen/harpoon",  --creates a stack of files and allows switching between them fast  
-	
 	{
 		"nvim-telescope/telescope.nvim", tag = "0.1.5",
 		requires = { {"nvim-lua/plenary.nvim"} },
 	},
-
-	--creates a git like control of undo stack with mulitple branches
+	--creates a git like control of undo stack with multiple branches
 	"mbbill/undotree",
-
 	--LaTeX support for nvim
 	"lervag/vimtex",
-
 	--R support for neovim
 	"jalvesaq/Nvim-R",
-
-	--vimwiki; need I say much
-	"vimwiki/vimwiki",
+	--vimwiki; the entire basis for my library system
+	{
+		"vimwiki/vimwiki", 
+    	init = function() 
+			vim.g.vimwiki_list = {
+				{
+					path = '~/Desktop/library',
+					path_html = '~/Desktop/library/vimwiki_html/',
+					syntax = 'markdown',
+					ext = '.md',
+				}
+			}
+			vim.g.vimwiki_global_ext = 0
+			vim.opt.compatible = false -- Disable compatibility with vi
+			vim.cmd [[ filetype plugin on ]] -- Enable file type detection, plugin, and indent
+			vim.cmd [[ syntax on ]] -- Enable syntax highlighting
+    	end,
+    },
 
 	--rust; need I say much
 	"rust-lang/rust.vim",
-
+	--copilot for nvim
+	"github/copilot.vim",
+	--goated to show what shit takes too much time
+	"dstein64/vim-startuptime",
 	"christoomey/vim-tmux-navigator",
-
-	--allows manipulation of stuff in git
-	"tpope/vim-fugitive",
-
 	"rktjmp/lush.nvim",
 
-	"dstein64/vim-startuptime",
+	--colorschemes
+	--let the moon fly
+	"bluz71/vim-moonfly-colors",
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+	},
 
-	
 	--[[
 	{
 		"MeanderingProgrammer/markdown.nvim",
-		requires = { "nvim-tree/nvim-web-devicons", opt = true },
+		main = "render-markdown",
+		opts = {},
+		name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
+		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
 	},
-
 	--]]
-	--let the moon fly
-	"bluz71/vim-moonfly-colors",
-	"github/copilot.vim",
-
-	--List of things I'm currently not sold on
+	--List of things I'm currently not sold on/
+	
+	--a must have for using multi-dimensional arrays --unfortunately this takes too much startup time
+	--[[
+	{
+		"Wansmer/treesj",
+		requires = { "nvim-treesitter" },
+	},
+	--]]
+	
 
 	--[[universal lsp handler; eh don't really need it
 	{
@@ -127,6 +145,6 @@ local opts = {}
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = plugins,
-	install = { colorscheme = { "habamax" } },
+	install = { colorscheme = { "moonfly" } },
   	checker = { enabled = true },
 })

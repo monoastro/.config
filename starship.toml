@@ -2,7 +2,7 @@ format = """$time $all"""
 
 [time]
 disabled = false
-format="[](fg:#ffffff bg:none)[⏲️ ](fg:#282c34 bg:#ffffff)[](fg:#ffffff bg:#0000ff)[ $time ]($style)[](fg:#0000ff bg:none)"
+format="[](fg:#ffffff bg:none)[ ](fg:#000000 bg:#ffffff)[](fg:#ffffff bg:#1793d1)[ ](fg:#ffffff bg:#1793d1)[](fg:#1793d1 bg:#0000ff)[ $time ]($style)[](fg:#0000ff bg:none)"
 time_format = "%R" #%R, %T
 style="fg:#ffffff bg:#0000ff"
 
