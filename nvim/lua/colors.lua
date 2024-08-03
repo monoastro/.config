@@ -11,12 +11,12 @@ vim.cmd [[ highlight Visual guibg=#673ab7 guifg=NONE ctermbg=blue ctermfg=NONE ]
 vim.cmd [[ highlight WinSeparator guibg=NONE guifg=#a020f0 ctermbg=NONE ctermfg=blue ]] --window separator : purple
 vim.cmd [[ highlight Pmenu guibg=NONE ctermbg=NONE ]]
 vim.cmd [[ highlight PmenuSel guibg=#673ab7  ctermbg=NONE]]
---apparently the warnings that's given by lsp are highlighted by vim's diagnostic
+--apparently the warnings that's given by lsp are highlighted by vim's diagnostic; let's make it yellow for now
 vim.cmd [[
-	highlight DiagnosticSignWarn guifg=#00ff00 ctermfg=Green
-	highlight DiagnosticVirtualTextWarn guifg=#00ff00 ctermfg=Green
-	highlight DiagnosticFloatingWarn guifg=#00ff00 ctermfg=Green
-	highlight DiagnosticUnderlineWarn guisp=#00ff00 gui=undercurl
+	highlight DiagnosticSignWarn guifg=#ffff00 ctermfg=Green
+	highlight DiagnosticVirtualTextWarn guifg=#ffff00 ctermfg=Green
+	highlight DiagnosticFloatingWarn guifg=#ffff00 ctermfg=Green
+	highlight DiagnosticUnderlineWarn guifg=#ffff00 ctermfg=Green
 ]]
 
 --set pumblend=0
