@@ -13,7 +13,7 @@ keymap = vim.keymap.set
 
 --Remap space as leader key
 keymap('', '<Space>', '<Nop>', opts)
-vim.g.mapleader = ' ' 
+vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 --options that i'd like to pass pretty much every single time
@@ -21,13 +21,13 @@ opts = {noremap = true, silent = true}
 
 --The Remaps
 --for easier navigation of the panes 
-keymap('n', '<c-k>', ':wincmd k<CR>')
-keymap('n', '<c-j>', ':wincmd j<CR>')
-keymap('n', '<c-h>', ':wincmd h<CR>')
-keymap('n', '<c-l>', ':wincmd l<CR>')
+keymap('n', '<c-k>', ':wincmd k<CR>', opts)
+keymap('n', '<c-j>', ':wincmd j<CR>', opts)
+keymap('n', '<c-h>', ':wincmd h<CR>', opts)
+keymap('n', '<c-l>', ':wincmd l<CR>', opts)
 
 --remove the highlight of search easily
-keymap('n', '<leader>hl', ':nohlsearch<CR>')
+keymap('n', '<leader>hl', ':nohlsearch<CR>', opts)
 
 --compilation and running of c/c++ 
 keymap('n', '<leader><leader>m', ':!make -B -j -pipe <cr>', opts)
@@ -35,10 +35,10 @@ keymap('n', '<leader><leader>i', ':!make -B -j -pipe && ./bin/main <cr>', opts)
 keymap('n', '<leader><leader>x', ':!./bin/main<cr>', opts)
 
 --resizing windows
-keymap('n', '<c-Left>'  , ':vertical resize+3<cr>')
-keymap('n', '<c-Right>' , ':vertical resize-3<cr>')
-keymap('n', '<c-Up>'    , ':resize+3<cr>')
-keymap('n', '<c-Down>'  , ':resize-3<cr>')
+keymap('n', '<c-Left>'  , ':vertical resize+3<cr>', opts)
+keymap('n', '<c-Right>' , ':vertical resize-3<cr>', opts)
+keymap('n', '<c-Up>'    , ':resize+3<cr>', opts)
+keymap('n', '<c-Down>'  , ':resize-3<cr>', opts)
 
 --lazy normal mode  
 keymap('i', 'jk', '<ESC>')
@@ -79,12 +79,13 @@ keymap('n', 'N', 'Nzzzv')
 
 --replace all instances of the word the cursor is on
 keymap('n', 'R', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+keymap('v', 'R', [[y:%s/\V<C-r>=escape(@", '/\')<CR>/<C-r>=escape(@", '/\')<CR>/gI<Left><Left><Left>]])
 
 --replace { with <cr>{
 keymap('n', '<leader>xp', [[:%s/\(\s*{\)/\r{/g<CR> :nohlsearch<CR>]])
-
 
 --splitting the windows
 keymap('n', '<leader>wv', ':vsplit<cr> :wincmd l<CR>')
 keymap('n', '<leader>wh', ':split<cr> :wincmd j<CR>')
 
+keymap('n', '<leader>o', '<cmd>silent !tmux neww tmux-sessionizer<cr>', opts)

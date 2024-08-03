@@ -1,11 +1,10 @@
 --numbering the lines, don't really prefer it but hey it makes it easier to jump to a line of code
+--this is starting to grow on me
 vim.opt.number = true
 vim.opt.relativenumber = true
 
 --remove the grey column bastard 
 --vim.opt.signcolumn = no
-
---this is starting to grow on me
 vim.opt.signcolumn = 'number'
 
 vim.opt.wrap = true

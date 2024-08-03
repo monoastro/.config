@@ -1,4 +1,3 @@
--- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -17,19 +16,18 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = 
 {
+	--Very essential
 	{ "folke/lazy.nvim", tag = "stable" },
-
-	--essentials
-	{ 
-		"neoclide/coc.nvim",
-		branch = "release",
-	},
+	--colorschemes
+	"bluz71/vim-moonfly-colors", --let the moon fly
 	"voldikss/vim-floaterm",
+
 	{
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate"
 	},
-	"nvim-treesitter/playground",
+	"nvim-treesitter/playground", 
+
 	"nvim-lualine/lualine.nvim",
 	--live server support for web development
 	{
@@ -40,7 +38,7 @@ local plugins =
 	--file navigation
 	"nvim-tree/nvim-tree.lua",
 	"nvim-tree/nvim-web-devicons",
-	"theprimeagen/harpoon",  --creates a stack of files and allows switching between them fast  
+	"leath-dub/snipe.nvim",
 	{
 		"nvim-telescope/telescope.nvim", tag = "0.1.5",
 		requires = { {"nvim-lua/plenary.nvim"} },
@@ -53,8 +51,8 @@ local plugins =
 	"jalvesaq/Nvim-R",
 	--vimwiki; the entire basis for my library system
 	{
-		"vimwiki/vimwiki", 
-    	init = function() 
+		"vimwiki/vimwiki",
+    	init = function()
 			vim.g.vimwiki_list = {
 				{
 					path = '~/Desktop/library',
@@ -76,20 +74,28 @@ local plugins =
 	"github/copilot.vim",
 	--goated to show what shit takes too much time
 	"dstein64/vim-startuptime",
-	"christoomey/vim-tmux-navigator",
-	"rktjmp/lush.nvim",
-
-	--colorschemes
-	--let the moon fly
-	"bluz71/vim-moonfly-colors",
+	--connect discord to nvim
+	"andweeb/presence.nvim",
+	--use vim navigation in tmux
 	{
-		"folke/tokyonight.nvim",
-		lazy = false,
-		priority = 1000,
-		opts = {},
+		"christoomey/vim-tmux-navigator",
+		cmd = {
+			"TmuxNavigateLeft",
+			"TmuxNavigateDown",
+			"TmuxNavigateUp",
+			"TmuxNavigateRight",
+			"TmuxNavigatePrevious",
+		},
+		keys = {
+			{ "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+			{ "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+			{ "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+			{ "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+		},
 	},
 
-	--[[
+	--markdown support
 	{
 		"MeanderingProgrammer/markdown.nvim",
 		main = "render-markdown",
@@ -97,52 +103,44 @@ local plugins =
 		name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
 		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
 	},
-	--]]
-	--List of things I'm currently not sold on/
-	
-	--a must have for using multi-dimensional arrays --unfortunately this takes too much startup time
+
+	--universal lsp handler; Imma be honest, I don't have the complete picture on what each of these things accomplish
+	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
+	-- LSP Support
+	{'neovim/nvim-lspconfig'},
+	{'williamboman/mason.nvim'},
+	{'williamboman/mason-lspconfig.nvim'},
+	-- Autocompletion
+	{'hrsh7th/nvim-cmp'},
+	{'hrsh7th/cmp-nvim-lsp'},
+	{"hrsh7th/cmp-buffer" },
+	{"hrsh7th/cmp-path" },
+	{"saadparwaiz1/cmp_luasnip" },
+	{"hrsh7th/cmp-nvim-lua" },
+	-- Snippets
+	{'L3MON4D3/LuaSnip'},
+	{'rafamadriz/friendly-snippets'},
+
+	-- Used to use; not anymore
+
 	--[[
+	--found a possibly better plugin
+	"theprimeagen/harpoon",  --creates a stack of files and allows switching between them fast 
+	{ 
+		"neoclide/coc.nvim",
+		branch = "release",
+	},
+	--create nvim themes
+	"rktjmp/lush.nvim",
+	'tpope/vim-obsession',
+	--a must have for using multi-dimensional arrays --unfortunately this takes too much startup time
 	{
 		"Wansmer/treesj",
 		requires = { "nvim-treesitter" },
 	},
 	--]]
-	
-
-	--[[universal lsp handler; eh don't really need it
-	{
-
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
-		requires = {
-			-- LSP Support
-			{ "neovim/nvim-lspconfig" },
-			{ "williamboman/mason-lspconfig.nvim" },
-			{ "williamboman/mason.nvim" },
-
-			-- Autocompletion
-			--{ "hrsh7th/nvim-cmp" },
-			--{ "hrsh7th/cmp-nvim-lsp" },
-			--{ "hrsh7th/cmp-buffer" },
-			--{ "hrsh7th/cmp-path" },
-			--{ "saadparwaiz1/cmp_luasnip" },
-			--{ "hrsh7th/cmp-nvim-lua" },
-
-			-- Snippets
-			--{ "L3MON4D3/LuaSnip" },
-			--{ "rafamadriz/friendly-snippets" },
-		},
-	}
-	--]]
-
-	--connect discord to nvim
-	--[[	"andweeb/presence.nvim",
-	--]]
 }
 
-local opts = {}
-
--- Setup lazy.nvim
 require("lazy").setup({
 	spec = plugins,
 	install = { colorscheme = { "moonfly" } },

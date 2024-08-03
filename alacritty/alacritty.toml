@@ -53,7 +53,7 @@ multiplier = 3
 [window]
 decorations = "none"
 dynamic_title = false
-opacity = 0.7
+opacity = 1
 startup_mode = "windowed"
 
 [window.padding]
@@ -66,6 +66,9 @@ y = 0
 
 [keyboard]
 bindings = [
-  { key = "Escape", mods = "Control", action = "ToggleViMode"   },
-  { key = "I", mode = "Vi|~Search", action = "ToggleViMode"   },
+# Disable the default Ctrl+Shift+Space binding
+{ key = "Space", mods = "Control|Shift", action = "None" },
+# Map it to Ctrl+Escape 
+{ key = "Escape", mods = "Control", action = "ToggleViMode"   },
+{ key = "I", mode = "Vi|~Search", action = "ToggleViMode"   },
 ]
