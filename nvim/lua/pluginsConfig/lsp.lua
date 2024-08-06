@@ -1,7 +1,7 @@
 local lsp_zero = require('lsp-zero')
 require('mason').setup({}) --docs: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
 require('mason-lspconfig').setup({
-	ensure_installed = {'tsserver', 'rust_analyzer', 'lua_ls'},
+	ensure_installed = {'tsserver', 'rust_analyzer', 'lua_ls', 'clangd'},
 	handlers = {
 		function(server_name)
 			require('lspconfig')[server_name].setup({})

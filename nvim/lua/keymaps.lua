@@ -88,4 +88,5 @@ keymap('n', '<leader>xp', [[:%s/\(\s*{\)/\r{/g<CR> :nohlsearch<CR>]])
 keymap('n', '<leader>wv', ':vsplit<cr> :wincmd l<CR>')
 keymap('n', '<leader>wh', ':split<cr> :wincmd j<CR>')
 
-keymap('n', '<leader>o', '<cmd>silent !tmux neww tmux-sessionizer<cr>', opts)
+--keymap('n', '<leader>o', '<cmd>silent !tmux neww tmux-new-session<cr>', opts)
+--eh adding this to tmux.conf is much better

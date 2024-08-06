@@ -14,7 +14,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = 
+--total storage use: 144K config + 343M plugins(200M of which is Mason; mainly clangd)
+local plugins =
 {
 	--Very essential
 	{ "folke/lazy.nvim", tag = "stable" },
@@ -26,7 +27,7 @@ local plugins =
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate"
 	},
-	"nvim-treesitter/playground", 
+	"nvim-treesitter/playground",
 
 	"nvim-lualine/lualine.nvim",
 	--live server support for web development
@@ -68,8 +69,6 @@ local plugins =
     	end,
     },
 
-	--rust; need I say much
-	"rust-lang/rust.vim",
 	--copilot for nvim
 	"github/copilot.vim",
 	--goated to show what shit takes too much time
@@ -121,11 +120,34 @@ local plugins =
 	{'L3MON4D3/LuaSnip'},
 	{'rafamadriz/friendly-snippets'},
 
+	--experimental git graph
+	{
+		'isakbm/gitgraph.nvim',
+		dependencies = { 'sindrets/diffview.nvim' },
+		--@type I.GGConfig
+		opts = {
+			symbols = {
+				merge_commit = 'M',
+				commit = '*',
+			},
+			format = {
+				timestamp = '%H:%M:%S %d-%m-%Y',
+				fields = { 'hash', 'timestamp', 'author', 'branch_name', 'tag' },
+			},
+		},
+		init = function()
+			vim.keymap.set('n', '<leader>gg', function()
+				require('gitgraph').draw({}, { all = true, max_count = 5000 })
+			end, { desc = 'new git graph' })
+		end,
+	},
+
 	-- Used to use; not anymore
 
 	--[[
 	--found a possibly better plugin
 	"theprimeagen/harpoon",  --creates a stack of files and allows switching between them fast 
+	--was time I moved on to proper lsp
 	{ 
 		"neoclide/coc.nvim",
 		branch = "release",
@@ -138,6 +160,9 @@ local plugins =
 		"Wansmer/treesj",
 		requires = { "nvim-treesitter" },
 	},
+
+	--rust; need I say much; Rust and other language stuff is done in Mason
+	"rust-lang/rust.vim",
 	--]]
 }
 
