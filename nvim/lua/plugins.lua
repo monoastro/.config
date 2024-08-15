@@ -14,7 +14,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
---total storage use: 144K config + 343M plugins(200M of which is Mason; mainly clangd)
+--total storage use: 144K config + 321M plugins(200M of which is Mason; mainly clangd)
 local plugins =
 {
 	--Very essential
@@ -27,18 +27,26 @@ local plugins =
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate"
 	},
-	"nvim-treesitter/playground",
+	--"nvim-treesitter/playground",
 
 	"nvim-lualine/lualine.nvim",
-	--live server support for web development
+	--live server support
 	{
 		"barrett-ruth/live-server.nvim",
 		build = "yarn global add live-server",
 		--config = true
 	},
 	--file navigation
+	"echasnovski/mini.icons",
 	"nvim-tree/nvim-tree.lua",
 	"nvim-tree/nvim-web-devicons",
+	--[[
+	{
+		'stevearc/oil.nvim',
+		opts = {},
+		dependencies = { { "echasnovski/mini.icons", opts = {} } },
+	},
+	--]]
 	"leath-dub/snipe.nvim",
 	{
 		"nvim-telescope/telescope.nvim", tag = "0.1.5",
@@ -48,8 +56,6 @@ local plugins =
 	"mbbill/undotree",
 	--LaTeX support for nvim
 	"lervag/vimtex",
-	--R support for neovim
-	"jalvesaq/Nvim-R",
 	--vimwiki; the entire basis for my library system
 	{
 		"vimwiki/vimwiki",
@@ -100,15 +106,15 @@ local plugins =
 		main = "render-markdown",
 		opts = {},
 		name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
-		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+		dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' },
 	},
 
 	--universal lsp handler; Imma be honest, I don't have the complete picture on what each of these things accomplish
 	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
 	-- LSP Support
-	{'neovim/nvim-lspconfig'},
 	{'williamboman/mason.nvim'},
 	{'williamboman/mason-lspconfig.nvim'},
+	{'neovim/nvim-lspconfig'},
 	-- Autocompletion
 	{'hrsh7th/nvim-cmp'},
 	{'hrsh7th/cmp-nvim-lsp'},
@@ -116,6 +122,12 @@ local plugins =
 	{"hrsh7th/cmp-path" },
 	{"saadparwaiz1/cmp_luasnip" },
 	{"hrsh7th/cmp-nvim-lua" },
+	--auto closing brackets
+	{
+		'windwp/nvim-autopairs',
+		event = "InsertEnter",
+		config = true
+	},
 	-- Snippets
 	{'L3MON4D3/LuaSnip'},
 	{'rafamadriz/friendly-snippets'},
@@ -142,28 +154,10 @@ local plugins =
 		end,
 	},
 
-	-- Used to use; not anymore
+	--replacement for mouse
+	'ggandor/leap.nvim',
 
-	--[[
-	--found a possibly better plugin
-	"theprimeagen/harpoon",  --creates a stack of files and allows switching between them fast 
-	--was time I moved on to proper lsp
-	{ 
-		"neoclide/coc.nvim",
-		branch = "release",
-	},
-	--create nvim themes
-	"rktjmp/lush.nvim",
-	'tpope/vim-obsession',
-	--a must have for using multi-dimensional arrays --unfortunately this takes too much startup time
-	{
-		"Wansmer/treesj",
-		requires = { "nvim-treesitter" },
-	},
 
-	--rust; need I say much; Rust and other language stuff is done in Mason
-	"rust-lang/rust.vim",
-	--]]
 }
 
 require("lazy").setup({
@@ -171,3 +165,34 @@ require("lazy").setup({
 	install = { colorscheme = { "moonfly" } },
   	checker = { enabled = true },
 })
+
+--[[
+-- Used to use; not anymore
+--R support for neovim
+"jalvesaq/Nvim-R",
+--found a possibly better plugin
+"theprimeagen/harpoon",  --creates a stack of files and allows switching between them fast 
+--was time I moved on to proper lsp
+{ 
+	"neoclide/coc.nvim",
+	branch = "release",
+},
+--create nvim themes
+"rktjmp/lush.nvim",
+'tpope/vim-obsession',
+--a must have for using multi-dimensional arrays --unfortunately this takes too much startup time
+{
+	"Wansmer/treesj",
+	requires = { "nvim-treesitter" },
+},
+
+--rust; need I say much; Rust and other language stuff is done in Mason
+"rust-lang/rust.vim",
+
+--replace with oil
+--"nvim-tree/nvim-tree.lua",
+--"nvim-tree/nvim-web-devicons", --replace this with mini everywhere
+
+--I don't really get the hype
+--"catppuccin/nvim",
+--]]

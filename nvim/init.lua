@@ -1,5 +1,5 @@
 require("keymaps")
+require("customOptions")
 require("plugins")
 require("pluginsConfig")
-require("customOptions")
 require("colors")

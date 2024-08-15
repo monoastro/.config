@@ -81,12 +81,17 @@ keymap('n', 'N', 'Nzzzv')
 keymap('n', 'R', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 keymap('v', 'R', [[y:%s/\V<C-r>=escape(@", '/\')<CR>/<C-r>=escape(@", '/\')<CR>/gI<Left><Left><Left>]])
 
---replace { with <cr>{
-keymap('n', '<leader>xp', [[:%s/\(\s*{\)/\r{/g<CR> :nohlsearch<CR>]])
-
 --splitting the windows
 keymap('n', '<leader>wv', ':vsplit<cr> :wincmd l<CR>')
 keymap('n', '<leader>wh', ':split<cr> :wincmd j<CR>')
 
---keymap('n', '<leader>o', '<cmd>silent !tmux neww tmux-new-session<cr>', opts)
---eh adding this to tmux.conf is much better
+--[[
+reformat
+fn {
+}
+with
+fn
+{
+}
+--]]
+keymap('n', '<leader>rf', [[ :%s/^\(\s*\).*\zs{\s*$/\r\1{/<cr>:nohlsearch<cr>]], opts)

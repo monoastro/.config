@@ -8,24 +8,53 @@ require('mason-lspconfig').setup({
 		end,
 	},
 })
+require('lspconfig').lua_ls.setup {
+  settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+      },
+      diagnostics = {
+        globals = {
+          'vim',
+          'require'
+        },
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+}
+
 local cmp = require('cmp') --this one needs to be reusable
 cmp.setup({
-  window =
-  {
-    completion =
+	window =
 	{
-      border = 'rounded',
-      winhighlight = 'Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None',
-    },
-    documentation =
+		completion =
+		{
+			border = 'rounded',
+			winhighlight = 'Normal:Pmenu,CursorLine:PmenuSel,FloatBorder:FloatBorder,Search:None',
+		},
+		documentation =
+		{
+			border = 'rounded',
+		},
+	},
+	mapping =
 	{
-      border = 'rounded',
-    },
-  },
-  mapping =
-  {
-	['<CR>'] = cmp.mapping.confirm({ select = true }),
-  },
+		['<CR>'] = cmp.mapping.confirm({ select = true }),
+	},
+	sources = cmp.config.sources({
+		{ name = 'nvim_lsp' },
+		{ name = 'luasnip' },
+		{ name = 'buffer' },
+		{ name = 'path' },
+		{ name = 'nvim_lua' },
+	}),
 })
 
 -- :help lsp-zero-keybindings to learn the available actions
@@ -36,6 +65,11 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 
 --remove those annoying signs that overlap with my beautiful line numbers
-vim.diagnostic.config({
-	signs = false,
-})
+vim.diagnostic.config({ signs = false, })
+
+require('luasnip.loaders.from_vscode').lazy_load()
+
+
+
+
+
