@@ -1,33 +1,44 @@
 local lsp_zero = require('lsp-zero')
-require('mason').setup({}) --docs: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
+--docs: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
+require('mason').setup({
+	ensure_installed = {'codelldb'}
+})
 require('mason-lspconfig').setup({
-	ensure_installed = {'tsserver', 'rust_analyzer', 'lua_ls', 'clangd'},
+	ensure_installed = {'rust_analyzer', 'lua_ls', 'clangd'},
 	handlers = {
 		function(server_name)
 			require('lspconfig')[server_name].setup({})
 		end,
 	},
 })
+--[[
+uninstalled for now:
+'tsserver', 
+--]]
+--local luasnip = require('luasnip')
+
 require('lspconfig').lua_ls.setup {
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        globals = {
-          'vim',
-          'require'
-        },
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
+	settings =
+	{
+		Lua =
+		{
+			runtime = {
+				version = 'LuaJIT',
+			},
+			diagnostics = {
+				globals = {
+					'vim',
+					'require'
+				},
+			},
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
 }
 
 local cmp = require('cmp') --this one needs to be reusable

@@ -16,5 +16,6 @@ require("nvim-tree").setup({
   filters = {
     dotfiles = true,
   },
-})--toggle nvim tree
+})
+--toggle nvim tree
 keymap('n', '<leader>e', ':NvimTreeToggle<CR>')

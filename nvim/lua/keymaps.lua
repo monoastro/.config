@@ -10,14 +10,14 @@
 --Global Options 
 --i'm lazy
 keymap = vim.keymap.set
+--options that i'd like to pass pretty much every single time
+opts = {noremap = true, silent = true}
 
 --Remap space as leader key
 keymap('', '<Space>', '<Nop>', opts)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
---options that i'd like to pass pretty much every single time
-opts = {noremap = true, silent = true}
 
 --The Remaps
 --for easier navigation of the panes 
@@ -29,10 +29,15 @@ keymap('n', '<c-l>', ':wincmd l<CR>', opts)
 --remove the highlight of search easily
 keymap('n', '<leader>hl', ':nohlsearch<CR>', opts)
 
---compilation and running of c/c++ 
-keymap('n', '<leader><leader>m', ':!make -B -j -pipe <cr>', opts)
-keymap('n', '<leader><leader>i', ':!make -B -j -pipe && ./bin/main <cr>', opts)
-keymap('n', '<leader><leader>x', ':!./bin/main<cr>', opts)
+-- I'm using cmake and tmux for this now; so long partner I'll miss ya
+--compilation and running of c/c++
+--keymap('n', '<leader><leader>m', ':!make -B -j -pipe <cr>', opts)
+--keymap('n', '<leader><leader>i', ':!make -B -j -pipe && ./bin/main <cr>', opts)
+--keymap('n', '<leader><leader>x', ':!./bin/main<cr>', opts)
+
+--this is tmux specific but tmux doesn't run its shell in the working directory by default
+--so until i figure out how to, it's gon stay here
+--keymap('n', '<leader>m', ':!tmux-compile-run<cr><cr>')
 
 --resizing windows
 keymap('n', '<c-Left>'  , ':vertical resize+3<cr>', opts)
@@ -57,7 +62,7 @@ keymap('v', '<leader>p' , '"+p<cr>')
 keymap('v', '<leader>P' , '"+P<cr>')
 --]]
 
---instead of the above, I can use the greatest remap ever
+--instead of the above let's use this
 keymap('x', '<leader>p', [["_dP]])
 
 --move blocks of code
@@ -82,8 +87,8 @@ keymap('n', 'R', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 keymap('v', 'R', [[y:%s/\V<C-r>=escape(@", '/\')<CR>/<C-r>=escape(@", '/\')<CR>/gI<Left><Left><Left>]])
 
 --splitting the windows
-keymap('n', '<leader>wv', ':vsplit<cr> :wincmd l<CR>')
-keymap('n', '<leader>wh', ':split<cr> :wincmd j<CR>')
+keymap('n', '<leader>wv', ':vsplit<cr> :wincmd l<CR>', opts)
+keymap('n', '<leader>wh', ':split<cr> :wincmd j<CR>', opts)
 
 --[[
 reformat

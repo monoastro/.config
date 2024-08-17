@@ -75,8 +75,6 @@ local plugins =
     	end,
     },
 
-	--copilot for nvim
-	"github/copilot.vim",
 	--goated to show what shit takes too much time
 	"dstein64/vim-startuptime",
 	--connect discord to nvim
@@ -99,7 +97,6 @@ local plugins =
 			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
 	},
-
 	--markdown support
 	{
 		"MeanderingProgrammer/markdown.nvim",
@@ -136,7 +133,6 @@ local plugins =
 	{
 		'isakbm/gitgraph.nvim',
 		dependencies = { 'sindrets/diffview.nvim' },
-		--@type I.GGConfig
 		opts = {
 			symbols = {
 				merge_commit = 'M',
@@ -153,11 +149,40 @@ local plugins =
 			end, { desc = 'new git graph' })
 		end,
 	},
-
 	--replacement for mouse
-	'ggandor/leap.nvim',
-
-
+	"ggandor/leap.nvim",
+	--dap me up my boy
+	"mfussenegger/nvim-dap",
+	{
+		"jay-babu/mason-nvim-dap.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"mfussenegger/nvim-dap",
+		},
+		opts = {
+			handlers = {}
+		},
+	},
+	{
+		"rcarriga/nvim-dap-ui",
+		event = "VeryLazy",
+		dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} ,
+		config = function()
+			local dap = require("dap")
+			local dapui = require("dapui")
+			dapui.setup()
+			dap.listeners.after.event_initialized["dapui_config"] = function()
+				dapui.open()
+			end
+			dap.listeners.before.event_terminated["dapui_config"] = function()
+				dapui.close()
+			end
+			dap.listeners.before.event_exited["dapui_config"] = function()
+				dapui.close()
+			end
+		end
+	},
 }
 
 require("lazy").setup({

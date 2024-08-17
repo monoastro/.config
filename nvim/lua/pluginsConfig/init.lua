@@ -16,6 +16,7 @@ require("pluginsConfig.storage")
 require("pluginsConfig.nvim-tree")
 require("pluginsConfig.leap")
 require("pluginsConfig.autopairs")
+require("pluginsConfig.dap")
 
 --unused
 --require("pluginsConfig.coc")

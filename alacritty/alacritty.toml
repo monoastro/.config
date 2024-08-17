@@ -28,7 +28,7 @@ bright_foreground = "#00ff00"
 foreground = "0x00ff00"
 
 [font]
-size = 13
+size = 10 
 
 [font.bold]
 family = "Hack"
@@ -53,8 +53,8 @@ multiplier = 3
 [window]
 decorations = "none"
 dynamic_title = false
-opacity = 0.7
-startup_mode = "windowed"
+opacity = 0.9
+startup_mode = "fullscreen"
 
 [window.padding]
 x = 0
@@ -66,9 +66,9 @@ y = 0
 
 [keyboard]
 bindings = [
-# Disable the default Ctrl+Shift+Space binding
+# disable the default Ctrl+Shift+Space binding
 { key = "Space", mods = "Control|Shift", action = "None" },
-# Map it to Ctrl+Escape 
-{ key = "Escape", mods = "Control", action = "ToggleViMode"   },
-{ key = "I", mode = "Vi|~Search", action = "ToggleViMode"   },
+# and then map that shit to Ctrl+Escape 
+#{ key = "Escape", mods = "Control", action = "ToggleViMode"   },
+#{ key = "I", mode = "Vi|~Search", action = "ToggleViMode"   },
 ]

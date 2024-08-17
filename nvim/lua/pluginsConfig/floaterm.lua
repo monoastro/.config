@@ -4,4 +4,7 @@ keymap('n', '<leader>tl', ':FloatermNew! --width=0.5 --wintype=vsplit --name=cap
 keymap('n', '<leader>tr', ':FloatermNew! --width=0.49 --wintype=vsplit --name=capybara --position=right <cr>', opts)
 
 --play video
-keymap('n', '<leader>ty', ':FloatermNew! --height=0.1 --wintype=normal --name=video --position=bottom /home/jenishp/Projects/bash/playVideo && exit<cr>', opts)
+keymap('n', '<leader>ty', ':FloatermNew! --height=0.1 --wintype=normal --name=video --position=bottom playURL && exit<cr>', opts)
+--keymap('n', '<leader>ty',':!playURL' )
+
+-- vim.fn.input("Enter video URL: ")
