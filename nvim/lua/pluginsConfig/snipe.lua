@@ -1,3 +1,2 @@
 local snipe = require("snipe")
-snipe.setup()
-vim.keymap.set("n", "gb", snipe.toggle_buffer_menu())
+vim.keymap.set("n", "gb", snipe.create_buffer_menu_toggler())

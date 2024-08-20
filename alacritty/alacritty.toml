@@ -72,3 +72,7 @@ bindings = [
 { key = "Escape", mods = "Control", action = "ToggleViMode"   },
 #{ key = "I", mode = "Vi|~Search", action = "ToggleViMode"   },
 ]
+
+[shell]
+program = "/usr/bin/tmux"
+args = ["new-session", "-A", "-s", "main"]

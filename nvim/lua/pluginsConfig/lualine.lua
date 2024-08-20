@@ -3,22 +3,22 @@ require('lualine').setup {
     icons_enabled = true,
     theme = {
       insert = {
-        a = { fg = '#926ee4', bg = 'none' }, --purple
+        a = { fg = '#926ee4', bg = 'none' },
         b = { fg = '#926ee4', bg = 'none' },
         c = { fg = '#926ee4', bg = 'none' },
       },
       normal = {
-        a = { fg = '#00ff00', bg = 'none' }, --green
+        a = { fg = '#00ff00', bg = 'none' },
         b = { fg = '#00ff00', bg = 'none' },
         c = { fg = '#00ff00', bg = 'none' },
       },
       visual = {
-        a = { fg = '#0000ff', bg = 'none' }, --blue
+        a = { fg = '#0000ff', bg = 'none' },
         b = { fg = '#0000ff', bg = 'none' },
         c = { fg = '#0000ff', bg = 'none' },
       },
       command = {
-        a = { fg = '#926ee4', bg = 'none' }, 
+        a = { fg = '#926ee4', bg = 'none' },
         b = { fg = '#926ee4', bg = 'none' },
         c = { fg = '#926ee4', bg = 'none' },
       },

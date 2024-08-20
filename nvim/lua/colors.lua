@@ -45,7 +45,7 @@ highlight RenderMarkdownH6Bg guibg=#1919a0 ctermbg=17
 highlight RenderMarkdownCode guibg=#000000 ctermbg=0
 ]]
 
---override catppuccin's colors
+--override catppuccin's colors(if installed)
 vim.cmd
 [[
 highlight NvimTreeNormal guibg=NONE ctermbg=NONE
