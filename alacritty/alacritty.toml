@@ -53,8 +53,8 @@ multiplier = 3
 [window]
 decorations = "none"
 dynamic_title = false
-opacity = 0.9
-startup_mode = "fullscreen"
+opacity = 1
+startup_mode = "Maximized"
 
 [window.padding]
 x = 0
@@ -69,6 +69,6 @@ bindings = [
 # disable the default Ctrl+Shift+Space binding
 { key = "Space", mods = "Control|Shift", action = "None" },
 # and then map that shit to Ctrl+Escape 
-#{ key = "Escape", mods = "Control", action = "ToggleViMode"   },
+{ key = "Escape", mods = "Control", action = "ToggleViMode"   },
 #{ key = "I", mode = "Vi|~Search", action = "ToggleViMode"   },
 ]

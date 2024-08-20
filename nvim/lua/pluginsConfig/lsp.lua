@@ -1,8 +1,7 @@
+--lsp zero needs to be configured before the language servers
 local lsp_zero = require('lsp-zero')
 --docs: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
-require('mason').setup({
-	ensure_installed = {'codelldb'}
-})
+require('mason').setup({ ensure_installed = {'codelldb'} })
 require('mason-lspconfig').setup({
 	ensure_installed = {'rust_analyzer', 'lua_ls', 'clangd'},
 	handlers = {
@@ -11,36 +10,46 @@ require('mason-lspconfig').setup({
 		end,
 	},
 })
---[[
-uninstalled for now:
-'tsserver', 
---]]
---local luasnip = require('luasnip')
-
 require('lspconfig').lua_ls.setup {
 	settings =
 	{
 		Lua =
 		{
-			runtime = {
+			runtime =
+			{
 				version = 'LuaJIT',
 			},
-			diagnostics = {
-				globals = {
+			diagnostics =
+			{
+				globals =
+				{
 					'vim',
-					'require'
+					'require',
 				},
 			},
-			workspace = {
+			workspace =
+			{
 				library = vim.api.nvim_get_runtime_file("", true),
 			},
-			telemetry = {
+			telemetry =
+			{
 				enable = false,
 			},
 		},
 	},
 }
+--remove those annoying signs that overlap with my beautiful line numbers
+vim.diagnostic.config({ signs = false, })
+-- :help lsp-zero-keybindings to learn the available actions
+lsp_zero.on_attach(function(client, bufnr)
+	local opts = {buffer = bufnr}
+	keymap('n', '<c-g>', function() vim.lsp.buf.definition() end, opts)
+	lsp_zero.default_keymaps(opts)
+end)
 
+
+-- I strongly feel like this snippet completion bullshit seriously slows me down in the long term
+-- Instead of this bullshit make something that props up documentation on a keyword from some defined source like cht.sh or cppreference
 local cmp = require('cmp') --this one needs to be reusable
 cmp.setup({
 	window =
@@ -61,26 +70,16 @@ cmp.setup({
 	},
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
-		{ name = 'buffer' },
-		{ name = 'path' },
-		{ name = 'nvim_lua' },
+		--{ name = 'buffer' },
+		--{ name = 'path' },
+		--{ name = 'nvim_lua' },
+		--{ name = 'luasnip' },
 	}),
 })
-
--- :help lsp-zero-keybindings to learn the available actions
-lsp_zero.on_attach(function(client, bufnr)
-	local opts = {buffer = bufnr}
-	keymap('n', '<c-g>', function() vim.lsp.buf.definition() end, opts)
-	lsp_zero.default_keymaps(opts)
-end)
-
---remove those annoying signs that overlap with my beautiful line numbers
-vim.diagnostic.config({ signs = false, })
-
+--[[
+uninstalled lsp for now:
+'tsserver', 
+--local luasnip = require('luasnip')
 require('luasnip.loaders.from_vscode').lazy_load()
-
-
-
-
+--]]
 

@@ -21,6 +21,8 @@ local plugins =
 	{ "folke/lazy.nvim", tag = "stable" },
 	--colorschemes
 	"bluz71/vim-moonfly-colors", --let the moon fly
+--	"rebelot/kanagawa.nvim",
+	"folke/tokyonight.nvim",
 	"voldikss/vim-floaterm",
 
 	{
@@ -102,87 +104,29 @@ local plugins =
 		"MeanderingProgrammer/markdown.nvim",
 		main = "render-markdown",
 		opts = {},
-		name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
+		name = 'render-markdown', -- only needed if you have another plugin named markdown.nvim
 		dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' },
 	},
-
-	--universal lsp handler; Imma be honest, I don't have the complete picture on what each of these things accomplish
-	{'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-	-- LSP Support
-	{'williamboman/mason.nvim'},
-	{'williamboman/mason-lspconfig.nvim'},
-	{'neovim/nvim-lspconfig'},
-	-- Autocompletion
-	{'hrsh7th/nvim-cmp'},
-	{'hrsh7th/cmp-nvim-lsp'},
-	{"hrsh7th/cmp-buffer" },
-	{"hrsh7th/cmp-path" },
-	{"saadparwaiz1/cmp_luasnip" },
-	{"hrsh7th/cmp-nvim-lua" },
-	--auto closing brackets
-	{
-		'windwp/nvim-autopairs',
-		event = "InsertEnter",
-		config = true
-	},
-	-- Snippets
-	{'L3MON4D3/LuaSnip'},
-	{'rafamadriz/friendly-snippets'},
-
 	--experimental git graph
 	{
 		'isakbm/gitgraph.nvim',
 		dependencies = { 'sindrets/diffview.nvim' },
-		opts = {
-			symbols = {
-				merge_commit = 'M',
-				commit = '*',
-			},
-			format = {
-				timestamp = '%H:%M:%S %d-%m-%Y',
-				fields = { 'hash', 'timestamp', 'author', 'branch_name', 'tag' },
-			},
-		},
-		init = function()
-			vim.keymap.set('n', '<leader>gg', function()
-				require('gitgraph').draw({}, { all = true, max_count = 5000 })
-			end, { desc = 'new git graph' })
-		end,
 	},
 	--replacement for mouse
 	"ggandor/leap.nvim",
-	--dap me up my boy
-	"mfussenegger/nvim-dap",
-	{
-		"jay-babu/mason-nvim-dap.nvim",
-		event = "VeryLazy",
-		dependencies = {
-			"williamboman/mason.nvim",
-			"mfussenegger/nvim-dap",
-		},
-		opts = {
-			handlers = {}
-		},
-	},
-	{
-		"rcarriga/nvim-dap-ui",
-		event = "VeryLazy",
-		dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} ,
-		config = function()
-			local dap = require("dap")
-			local dapui = require("dapui")
-			dapui.setup()
-			dap.listeners.after.event_initialized["dapui_config"] = function()
-				dapui.open()
-			end
-			dap.listeners.before.event_terminated["dapui_config"] = function()
-				dapui.close()
-			end
-			dap.listeners.before.event_exited["dapui_config"] = function()
-				dapui.close()
-			end
-		end
-	},
+
+	--universal lsp handler; Imma be honest, I feel like some of these slow me down more in the long term
+	'VonHeikemen/lsp-zero.nvim', branch = 'v3.x',
+	-- LSP Support
+	'williamboman/mason.nvim',
+	'williamboman/mason-lspconfig.nvim',
+	'neovim/nvim-lspconfig',
+	--auto closing brackets
+	'windwp/nvim-autopairs',
+	-- Autocompletion
+	'hrsh7th/nvim-cmp',
+	'hrsh7th/cmp-nvim-lsp',
+
 }
 
 require("lazy").setup({
@@ -193,6 +137,7 @@ require("lazy").setup({
 
 --[[
 -- Used to use; not anymore
+
 --R support for neovim
 "jalvesaq/Nvim-R",
 --found a possibly better plugin
@@ -220,4 +165,69 @@ require("lazy").setup({
 
 --I don't really get the hype
 --"catppuccin/nvim",
+
+--this is madness, imma just use gdb or create my own plugin around it
+"mfussenegger/nvim-dap", --dap me up my boy
+{
+	"jay-babu/mason-nvim-dap.nvim",
+	event = "VeryLazy",
+	dependencies = {
+		"williamboman/mason.nvim",
+		"mfussenegger/nvim-dap",
+	},
+	opts = {
+		handlers = {}
+	},
+},
+{
+	"rcarriga/nvim-dap-ui",
+	event = "VeryLazy",
+	dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} ,
+	config = function()
+		local dap = require("dap")
+		local dapui = require("dapui")
+		dapui.setup()
+		dap.listeners.after.event_initialized["dapui_config"] = function()
+			dapui.open()
+		end
+		dap.listeners.before.event_terminated["dapui_config"] = function()
+			dapui.close()
+		end
+		dap.listeners.before.event_exited["dapui_config"] = function()
+			dapui.close()
+		end
+	end
+},
+
+{
+	"yetone/avante.nvim",
+	event = "VeryLazy",
+	build = "make",
+	opts =
+	{
+		-- add any opts here
+	},
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+		"stevearc/dressing.nvim",
+		"nvim-lua/plenary.nvim",
+		{
+			"grapp-dev/nui-components.nvim",
+			dependencies = {
+				"MunifTanjim/nui.nvim"
+			}
+		},
+
+	},
+},
+
+
+
+"hrsh7th/cmp-buffer" ,
+"hrsh7th/cmp-path" ,
+"saadparwaiz1/cmp_luasnip" ,
+"hrsh7th/cmp-nvim-lua" ,
+ Snippets
+'L3MON4D3/LuaSnip',
+'rafamadriz/friendly-snippets',
 --]]
