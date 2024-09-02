@@ -48,6 +48,7 @@ lsp_zero.on_attach(function(client, bufnr)
 end)
 
 
+--[[
 -- I strongly feel like this snippet completion bullshit seriously slows me down in the long term
 -- Instead of this bullshit make something that props up documentation on a keyword from some defined source like cht.sh or cppreference
 local cmp = require('cmp') --this one needs to be reusable
@@ -71,11 +72,12 @@ cmp.setup({
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
 		--{ name = 'buffer' },
-		--{ name = 'path' },
+		{ name = 'path' },
 		--{ name = 'nvim_lua' },
 		--{ name = 'luasnip' },
 	}),
 })
+--]]
 --[[
 uninstalled lsp for now:
 'tsserver', 

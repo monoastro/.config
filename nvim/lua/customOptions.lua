@@ -31,4 +31,10 @@ vim.opt.incsearch = true
 --fast update time
 vim.opt.updatetime = 50
 
-
+--[[
+vim.api.nvim_create_autocmd({}, {
+	pattern = "*",
+	callback = function()
+	end,
+})
+--]]

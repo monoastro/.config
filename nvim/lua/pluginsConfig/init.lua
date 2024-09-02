@@ -17,12 +17,12 @@ require("pluginsConfig.nvim-tree")
 require("pluginsConfig.leap")
 require("pluginsConfig.autopairs")
 require("pluginsConfig.gitgraph")
+require("pluginsConfig.oil")
 
 --tried and unused
 --require("pluginsConfig.coc")
 --require("pluginsConfig.harpoon")
 --require("pluginsConfig.treesj") --wtf this takes too much time to load
---require("pluginsConfig.oil")
 --require("pluginsConfig.dap")
 
 

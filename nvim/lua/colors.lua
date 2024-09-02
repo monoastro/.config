@@ -16,7 +16,7 @@ highlight NormalNC guibg=NONE ctermbg=NONE
 --visual mode select : purple, window separator : purple
 vim.cmd
 [[ 
-highlight Visual guibg=#673ab7 guifg=NONE ctermbg=blue ctermfg=NONE
+highlight Visual guibg=#664d9f guifg=NONE ctermbg=blue ctermfg=NONE
 highlight WinSeparator guibg=NONE guifg=#a020f0 ctermbg=NONE ctermfg=blue
 highlight Pmenu guibg=NONE ctermbg=NONE
 highlight PmenuSel guibg=#673ab7  ctermbg=NONE
@@ -61,4 +61,9 @@ setting its own background is a problem because my terminal can become transpare
 Also treesitter's default colorscheme doesn't highlight shit properly for me(everything is the same color for some reason, (how did it generate that dumbass colorscheme) so I'm using moonfly for the colorscheme which also has the background set
 
 This leads us to setting these colors manually, maybe at some point I'll make my own complete colorscheme at which point i'll not have to install moonfly
+--]]
+--[[
+--cool unused colors
+Purple
+--673ab7
 --]]

@@ -45,7 +45,7 @@ local function toggle_oil()
 end
 
 
-keymap("n", "<leader>e", toggle_oil , { desc = "Toggle oil.nvim" })
+keymap("n", "<leader>o", toggle_oil , { desc = "Toggle oil.nvim" })
 keymap("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 

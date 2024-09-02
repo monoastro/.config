@@ -22,7 +22,6 @@ local plugins =
 	--colorschemes
 	"bluz71/vim-moonfly-colors", --let the moon fly
 --	"rebelot/kanagawa.nvim",
-	"folke/tokyonight.nvim",
 	"voldikss/vim-floaterm",
 
 	{
@@ -42,12 +41,12 @@ local plugins =
 	"echasnovski/mini.icons",
 	"nvim-tree/nvim-tree.lua",
 	"nvim-tree/nvim-web-devicons",
-	--[[
 	{
 		'stevearc/oil.nvim',
 		opts = {},
 		dependencies = { { "echasnovski/mini.icons", opts = {} } },
 	},
+	--[[
 	--]]
 	"leath-dub/snipe.nvim",
 	{
@@ -123,14 +122,15 @@ local plugins =
 	--auto closing brackets
 	'windwp/nvim-autopairs',
 	-- Autocompletion
-	'hrsh7th/nvim-cmp',
-	'hrsh7th/cmp-nvim-lsp',
+	--'hrsh7th/nvim-cmp',
+	--'hrsh7th/cmp-nvim-lsp',
+	--"hrsh7th/cmp-path" ,
 }
 
 require("lazy").setup({
 	spec = plugins,
 	install = { colorscheme = { "moonfly" } },
-  	checker = { enabled = true },
+  	checker = { enabled = true, notify = false },
 })
 
 --[[
@@ -222,7 +222,6 @@ require("lazy").setup({
 
 
 "hrsh7th/cmp-buffer" ,
-"hrsh7th/cmp-path" ,
 "saadparwaiz1/cmp_luasnip" ,
 "hrsh7th/cmp-nvim-lua" ,
  Snippets
