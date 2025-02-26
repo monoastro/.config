@@ -11,4 +11,4 @@
 --end
 
 
-keymap('n', '<leader>l', ':Lazy<cr>')
+keymap('n', '<leader>j', ':Lazy<cr>')

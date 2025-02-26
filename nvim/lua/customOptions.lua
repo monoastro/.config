@@ -1,3 +1,4 @@
+--local autocmd = vim.api.nvim_create_autocmd
 --numbering the lines, don't really prefer it but hey it makes it easier to jump to a line of code
 --this is starting to grow on me
 vim.opt.number = true
@@ -31,8 +32,10 @@ vim.opt.incsearch = true
 --fast update time
 vim.opt.updatetime = 50
 
+--vim.opt.clipboard = "unnamedplus"
+
 --[[
-vim.api.nvim_create_autocmd({}, {
+autocmd({}, {
 	pattern = "*",
 	callback = function()
 	end,

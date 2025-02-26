@@ -100,3 +100,5 @@ fn
 }
 --]]
 keymap('n', '<leader>rf', [[ :%s/^\(\s*\).*\zs{\s*$/\r\1{/<cr>:nohlsearch<cr>]], opts)
+-- keymap('n', "<leader>/", "gcc", { desc = "Toggle Comment", remap = true })
+-- keymap('v', "<leader>/", "gc", { desc = "Toggle Comment", remap = true })

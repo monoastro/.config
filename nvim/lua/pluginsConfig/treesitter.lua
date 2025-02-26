@@ -1,4 +1,4 @@
-require'nvim-treesitter.configs'.setup {
+require("nvim-treesitter.configs").setup({
 	ensure_installed =
 	{
 		"cpp", "rust", "c", "lua", "vim", "javascript", "typescript", "html", "css", "json", "toml", "bash", "python", "markdown", "markdown_inline"
@@ -11,4 +11,4 @@ require'nvim-treesitter.configs'.setup {
 	{
 		enable = true,
 	},
-}
+})

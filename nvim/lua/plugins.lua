@@ -46,9 +46,13 @@ local plugins =
 		opts = {},
 		dependencies = { { "echasnovski/mini.icons", opts = {} } },
 	},
-	--[[
-	--]]
-	"leath-dub/snipe.nvim",
+	{
+		"leath-dub/snipe.nvim",
+		keys = {
+			{"gb", function () require("snipe").open_buffer_menu() end, desc = "Open Snipe buffer menu"}
+		},
+		opts = {}
+	},
 	{
 		"nvim-telescope/telescope.nvim", tag = "0.1.5",
 		requires = { {"nvim-lua/plenary.nvim"} },
@@ -98,6 +102,7 @@ local plugins =
 			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
 	},
+
 	--markdown support
 	{
 		"MeanderingProgrammer/markdown.nvim",
@@ -125,6 +130,12 @@ local plugins =
 	--'hrsh7th/nvim-cmp',
 	--'hrsh7th/cmp-nvim-lsp',
 	--"hrsh7th/cmp-path" ,
+	{
+		"nvzone/typr",
+		dependencies = "nvzone/volt",
+		opts = {},
+		cmd = { "Typr", "TyprStats" },
+	},
 }
 
 require("lazy").setup({
