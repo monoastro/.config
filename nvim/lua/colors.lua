@@ -52,6 +52,11 @@ highlight NvimTreeNormal guibg=NONE ctermbg=NONE
 highlight NvimTreeWinSeparator guibg=NONE guifg=#a020f0 ctermbg=NONE ctermfg=blue
 ]]
 
+-- Overriding manually after colorscheme moonfly to ensure transparency of lualine
+vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
+vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none"})
+
+
 --TSHighlightCapturesUnderCursor
 --vim.opt.termguicolors = false --I will miss this option
 --[[

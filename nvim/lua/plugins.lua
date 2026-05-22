@@ -116,7 +116,9 @@ local plugins =
 		dependencies = { 'sindrets/diffview.nvim' },
 	},
 	--replacement for mouse
-	"ggandor/leap.nvim",
+	{
+		url = "https://codeberg.org/andyg/leap.nvim",
+	},
 
 	--universal lsp handler; Imma be honest, I feel like some of these slow me down more in the long term
 	'VonHeikemen/lsp-zero.nvim', branch = 'v3.x',
@@ -136,6 +138,21 @@ local plugins =
 		opts = {},
 		cmd = { "Typr", "TyprStats" },
 	},
+
+	{
+		'anurag3301/nvim-platformio.lua',
+		-- cmd = { 'Pioinit', 'Piorun', 'Piocmdh', 'Piocmdf', 'Piolib', 'Piomon', 'Piodebug', 'Piodb' },
+
+		dependencies = {
+			{ 'akinsho/toggleterm.nvim' },
+			{ 'nvim-telescope/telescope.nvim' },
+			{ 'nvim-telescope/telescope-ui-select.nvim' },
+			{ 'nvim-lua/plenary.nvim' },
+		},
+	},
+	'tpope/vim-fugitive',
+	'github/copilot.vim'
+	
 }
 
 require("lazy").setup({
