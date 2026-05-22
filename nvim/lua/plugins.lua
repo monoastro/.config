@@ -33,7 +33,7 @@ local plugins =
 	"nvim-lualine/lualine.nvim",
 	--live server support
 	{
-		"barrett-ruth/live-server.nvim",
+		"https://git.barrettruth.com/barrettruth/live-server.nvim",
 		build = "yarn global add live-server",
 		--config = true
 	},
